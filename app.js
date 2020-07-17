@@ -39,6 +39,19 @@ app.get("/about", (req, res) => {
   })
 })
 
+//nav links redirection
+app.post("/", (req, res) => {
+  res.redirect("/")
+})
+
+app.post("/about", (req, res) => {
+  res.redirect("/about")
+})
+
+app.post("/contact", (req, res) => {
+  res.redirect("/contact")
+})
+
 app.listen(3000, function () {
   console.log("Server started on port 3000")
 })
