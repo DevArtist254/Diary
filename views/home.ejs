@@ -1,8 +1,12 @@
 <%- include('partials/header'); -%>
 
+<h1> Example of Home's Content </h1>
+<p> <%= homeContent %> </p>
+
 <%   for(let i =1;i < post.length; i++){ %>
 <h1><%=  post[i].head %></h1>
-<p><%=  post[i].message %></p>
+<% let string =  post[i].message %>
+<p><%=  string.substring(0,100) %>... <a href="/post/<%=  post[i].head %>">read more</a> </p>
 <% } %>
 
 <%- include('partials/footer'); -%>

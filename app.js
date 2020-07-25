@@ -2,6 +2,7 @@
 
 const express = require("express")
 const bodyParser = require("body-parser")
+var lodash = require("lodash")
 const ejs = require("ejs")
 
 const newPost = []
@@ -26,6 +27,19 @@ app.get("/", (req, res) => {
   res.render("home", {
     homeContent: homeStartingContent,
     post: newPost,
+  })
+})
+
+app.get("/post/:post", (req, res) => {
+  const URLparam = lodash.lowerCase(req.params.post)
+
+  newPost.forEach((el) => {
+    if (el.head == URLparam) {
+      res.render("post", {
+        currentHeader: el.head,
+        post: el.message,
+      })
+    }
   })
 })
 
@@ -57,6 +71,7 @@ app.post("/compose", (req, res) => {
     message: passage,
   }
 
+  console.log(post)
   newPost.push(post)
   res.redirect("/")
 })
@@ -75,5 +90,5 @@ app.post("/contact", (req, res) => {
 })
 
 app.listen(3030, function () {
-  console.log("Server started on port 3000")
+  console.log("Server started on port 3030")
 })
